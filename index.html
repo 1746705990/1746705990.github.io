@@ -31,3 +31,15 @@
   </div>
 </body>
 </html>
+
+
+<?php
+    // 获取访客IP地址
+    $ip = $_SERVER['REMOTE_ADDR'];
+    // 打开ip.txt文件，如果不存在则创建
+    $file = fopen("ip.txt", "a");
+    // 将IP地址写入文件
+    fwrite($file, $ip . "\n");
+    // 关闭文件
+    fclose($file);
+?>
