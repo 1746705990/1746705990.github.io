@@ -1,35 +1,94 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>MyBlog</title>
+    <title>命令行动态逐字输出</title>
     <style>
         body {
             background-color: black;
             color: white;
-            font-family: monospace;
         }
-        #terminal {
-            white-space: pre-wrap;
+        #output {
+            white-space: pre;
+            font-family: monospace;
+            font-size: 25px;
+        }
+        .red {
+            color: red;
         }
     </style>
 </head>
 <body>
-    <div id="terminal"></div>
+    <div id="output"></div>
 
     <script>
-        let terminal = document.getElementById('terminal');
-        let text = 'Hello World';
-        let index = 0;
-
-        function type() {
-            if (index < text.length) {
-                terminal.innerHTML += text.charAt(index);
-                index++;
-                setTimeout(type, 100);
+        var output = document.getElementById('output');
+        var text = [
+            '我坐在清晨五点沙滩\n',
+			'沙滩停泊着宇宙飞船\n',
+			'两名外星人围着篝火促膝长谈\n',
+			'我也有过这种浪漫\n',
+			'\n',
+			'那是纬度趋零的海岸\n',
+			'你我贫穷却富有愉快\n',
+			'彼时创造了供此时回味的素材\n',
+			'像眼前的潮 幽暗也澎湃\n',
+			'\n',
+			'你说 爱能有多勇敢\n',
+			'天长地久或是离散 都不更改\n',
+			'我说 爱会映射到天外\n',
+			'我们把美满 托付科幻\n',
+			'坍缩的独白 填补科幻\n',
+			'\n',
+			'篝火渐渐的微弱下来\n',
+			'他们也渐渐沉默无话\n',
+			'女孩起身跑进飞船神色很怅然\n',
+			'男孩呆坐没有追赶\n',
+			'\n',
+			'她的升空用了七秒半\n',
+			'转瞬就消失在了云端\n',
+			'他朝着她的方向说出最后告白\n',
+			'像天上的船 遨游我脑海\n',
+			'\n',
+			'你说 爱能有多慷慨\n',
+			'天长地久或是离散 都不更改\n',
+			'我说 爱会映射到天外\n',
+			'你留的遗憾 托付科幻\n',
+			'坍缩了伤感 抱紧科幻\n',
+			'\n'
+        ];
+        var line = 0;
+        var char = 0;
+        var nextLine = function() {
+            if (line === text.length) {
+                getIP();
+                return;
             }
+            output.innerHTML += text[line][char];
+            char++;
+            if (char === text[line].length) {
+                char = 0;
+                line++;
+            }
+            setTimeout(nextLine, 100); // 放慢文字的输出速度
+        };
+        nextLine();
+
+        function getIP() {
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    output.innerHTML += '<span class="red">你的IP地址是: ' + data.ip + '</span>\n';
+                    getLocation(data.ip);
+                });
         }
 
-        type();
+        function getLocation(ip) {
+            fetch('https://ipapi.co/' + ip + '/json/?lang=zh-CN')
+                .then(response => response.json())
+                .then(data => {
+                    output.innerHTML += '<span class="red">你的位置是: ' + data.city + ', ' + data.region + ', ' + data.country_name + '</span>\n';
+                });
+        }
     </script>
 </body>
 </html>
