@@ -1,10 +1,102 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>我的网页</title>
+	<title>杂志风格页面</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			overflow-x: hidden; /* 禁止水平滚动条出现 */
+		}
+		.page {
+			display: flex;
+			flex-direction: row;
+			height: calc(100vh - 100px); /* 减去下一页链接和图片间隔高度 */
+			max-width: 100%;
+			overflow: hidden;
+			align-items: center; /* 垂直居中 */
+			justify-content: center; /* 水平居中 */
+			margin-top: 50px; /* 顶部间距 */
+		}
+		.page img {
+			height: 100%;
+			width: 100%;
+			object-fit: cover;
+		}
+		.page img:first-child {
+			margin-right: 20px; /* 左右两图间隔 */
+		}
+		.image-container {
+			flex-grow: 1;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+		.next-page {
+			position: fixed;
+			bottom: 20px;
+			right: 20px;
+			padding: 20px;
+			background-color: #fff;
+			border: 1px solid #000;
+			border-radius: 5px;
+			text-align: center;
+			font-size: 18px;
+			font-weight: bold;
+			text-decoration: none;
+			color: #000;
+			box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+			transition: all 0.3s ease;
+		}
+		.next-page:hover {
+			background-color: #000;
+			color: #fff;
+		}
+		@media only screen and (max-width: 600px) {
+			.page {
+				flex-direction: column;
+				height: calc(200vh - 100px); /* 减去下一页链接和图片间隔高度 */
+			}
+			.page img {
+				height: calc(50vh - 30px); /* 图片高度为屏幕高度的 50% 减去间隔高度 */
+				width: auto;
+			}
+			.page img:first-child {
+				margin-right: 0;
+				margin-bottom: 20px; /* 上下两图间隔 */
+			}
+			.image-container {
+				flex-grow: 0;
+			}
+		}
+		@media only screen and (min-width: 601px) {
+			.page {
+				flex-direction: row;
+			}
+			.page img {
+				height: 100%;
+				width: 50%;
+			}
+			.page img:first-child {
+				margin-right: 40px; /* 左右两图间隔 */
+			}
+			.image-container {
+				flex-grow: 0;
+			}
+		}
+	</style>
 </head>
 <body>
-    <h1>欢迎来到我的网页！</h1>
-    <img src="RE4wHgr.jpg" alt="我的图片">
+	<div class="page">
+		<div class="image-container">
+			<img src="left-image.jpeg" alt="Left Image">
+		</div>
+		<div class="image-container">
+			<img src="right-image.jpeg" alt="Right Image">
+		</div>
+	</div>
+	<a href="https://example.com/next-page" class="next-page">下一页</a>
 </body>
 </html>
