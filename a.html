@@ -6,6 +6,14 @@
         @media screen and (max-width: 600px) {
             .container {
                 flex-direction: column;
+                gap: 20px;
+            }
+
+            .navigation {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
             }
         }
 
@@ -28,11 +36,44 @@
 <body>
     <div class="container">
         <div class="image">
-            <img src="image.jpg" alt="Image 1">
+            <img src="path/to/image1.jpg" alt="Image 1">
         </div>
         <div class="image">
-            <img src="image.jpg" alt="Image 2">
+            <img src="path/to/image2.jpg" alt="Image 2">
         </div>
     </div>
+
+    <div class="navigation">
+        <button onclick="previousPage()">上一页</button>
+        <button onclick="nextPage()">下一页</button>
+    </div>
+
+    <script>
+        var pages = [
+            "https://example.com/page1", // 替换为第一页的链接
+            "https://example.com/page2"  // 替换为第二页的链接
+        ];
+
+        var currentPage = 0;
+        var totalPages = pages.length;
+
+        function previousPage() {
+            if (currentPage > 0) {
+                currentPage--;
+                navigateToPage(currentPage);
+            }
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages - 1) {
+                currentPage++;
+                navigateToPage(currentPage);
+            }
+        }
+
+        function navigateToPage(page) {
+            window.location.href = pages[page];
+        }
+    </script>
 </body>
 </html>
