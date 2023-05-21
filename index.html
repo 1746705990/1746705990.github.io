@@ -19,21 +19,46 @@
 
     /* 下一页按钮样式 */
     .next-button {
-      text-align: center;
-      margin-top: 20px;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+    }
+
+    /* 访客位置样式 */
+    .visitor-location {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 999;
     }
   </style>
 </head>
 <body>
   <div class="image-container">
-    <img src="image.jpg" alt="My Image">
+    <img src="your-image.jpg" alt="Your Image">
   </div>
 
   <div class="next-button">
     <button onclick="smoothScrollToNextPage()">下一页</button>
   </div>
 
+  <div class="visitor-location">
+    <span id="location">正在获取位置...</span>
+  </div>
+
   <script>
+    // 使用 IP 接口获取访客位置
+    fetch('https://ipapi.co/json/')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('location').textContent = `您的位置：${data.city}, ${data.region}, ${data.country}`;
+      })
+      .catch(error => {
+        console.log('获取位置失败', error);
+        document.getElementById('location').textContent = '无法获取位置';
+      });
+
     function smoothScrollToNextPage() {
       // 执行平滑滚动到下一页的操作
       // 可以根据实际需求进行相应的处理
