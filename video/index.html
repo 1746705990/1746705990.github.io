@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    #video-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    
+    #video-wrapper {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    
+    #video-player {
+      width: auto;
+      height: 100%;
+      transform: rotate(90deg);
+      object-fit: contain;
+    }
+    
+    @media screen and (max-width: 767px) {
+      /* Styles for mobile devices */
+      #video-player {
+        transform: rotate(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="video-container">
+    <div id="video-wrapper">
+      <video id="video-player" controls>
+        <source src="video.mp4" type="video/mp4">
+        <!-- Add additional video sources for different formats if needed -->
+      </video>
+    </div>
+  </div>
+</body>
+</html>
