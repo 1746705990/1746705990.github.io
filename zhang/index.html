@@ -21,33 +21,36 @@
       background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
-      animation: slideAnimation 10s infinite;
+      animation: slideAnimation 6s infinite;
     }
 
     @keyframes slideAnimation {
       0% {
         transform: translateX(0);
       }
-      20% {
+      16.666% {
         transform: translateX(0);
       }
-      25% {
+      20% {
         transform: translateX(-100%);
       }
-      45% {
+      36.666% {
         transform: translateX(-100%);
       }
-      50% {
+      40% {
         transform: translateX(-200%);
       }
-      70% {
+      56.666% {
         transform: translateX(-200%);
       }
-      75% {
+      60% {
         transform: translateX(-300%);
       }
-      95% {
+      76.666% {
         transform: translateX(-300%);
+      }
+      80% {
+        transform: translateX(-400%);
       }
       100% {
         transform: translateX(-400%);
@@ -57,15 +60,12 @@
 </head>
 <body>
   <div id="slider">
-	   <div class="slide" style="background-image: url('1.jpeg');"></div>
-	   <div class="slide" style="background-image: url('2.jpeg');"></div>
-	   <div class="slide" style="background-image: url('3.jpeg');"></div>
-	   <div class="slide" style="background-image: url('4.jpeg');"></div>
-	   <div class="slide" style="background-image: url('5.jpeg');"></div>
-	   <div class="slide" style="background-image: url('6.jpeg');"></div>
-    
-    
-    <!-- 添加更多图片 -->
+    <div class="slide" style="background-image: url('1.jpeg');"></div>
+    <div class="slide" style="background-image: url('2.jpeg');"></div>
+    <div class="slide" style="background-image: url('3.jpeg');"></div>
+    <div class="slide" style="background-image: url('4.jpeg');"></div>
+    <div class="slide" style="background-image: url('5.jpeg');"></div>
+    <div class="slide" style="background-image: url('6.jpeg');"></div>
   </div>
 
   <script>
